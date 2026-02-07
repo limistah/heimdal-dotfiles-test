@@ -9,31 +9,45 @@ ignore:
   - heimdal.yaml
   - README.md
 
+# Define package sources
+sources:
+  packages:
+    - git
+    - vim
+    - curl
+  
+  dev-packages:
+    - ripgrep
+    - fd-find
+
 profiles:
   test:
     sources:
-      packages:
-        - git
-        - vim
-        - curl
-      symlinks:
-        - .bashrc
-        - .vimrc
-        - .config/nvim
+      - packages
     dotfiles:
       use_stowrc: true
+      files:
+        - source: ".bashrc"
+          target: "~/.bashrc"
+        - source: ".vimrc"
+          target: "~/.vimrc"
+        - source: ".config/nvim"
+          target: "~/.config/nvim"
 
   development:
     sources:
-      packages:
-        - git
-        - vim
-        - curl
-        - ripgrep
-        - fd-find
-      symlinks:
-        - .bashrc
-        - .vimrc
-        - .config/nvim
-        - .config/zsh
-        - .gitconfig
+      - packages
+      - dev-packages
+    dotfiles:
+      use_stowrc: true
+      files:
+        - source: ".bashrc"
+          target: "~/.bashrc"
+        - source: ".vimrc"
+          target: "~/.vimrc"
+        - source: ".config/nvim"
+          target: "~/.config/nvim"
+        - source: ".config/zsh"
+          target: "~/.config/zsh"
+        - source: ".gitconfig"
+          target: "~/.gitconfig"
