@@ -1,0 +1,39 @@
+heimdal:
+  version: "1.0"
+  # repo field intentionally omitted to test v1.1.1 bugfix
+  stow_compat: true
+
+ignore:
+  - .git
+  - .gitignore
+  - heimdal.yaml
+  - README.md
+
+profiles:
+  test:
+    sources:
+      packages:
+        - git
+        - vim
+        - curl
+      symlinks:
+        - .bashrc
+        - .vimrc
+        - .config/nvim
+    dotfiles:
+      use_stowrc: true
+
+  development:
+    sources:
+      packages:
+        - git
+        - vim
+        - curl
+        - ripgrep
+        - fd-find
+      symlinks:
+        - .bashrc
+        - .vimrc
+        - .config/nvim
+        - .config/zsh
+        - .gitconfig
